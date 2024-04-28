@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英语代词复习与练习</title>
+    <style>
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            margin: 40px;
+            background-color: #f4f4f9;
+            color: black;
+        }
+        h1, h2 {
+            color: #333366;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+            cursor: pointer;
+        }
+        .question {
+            margin-top: 20px;
+        }
+        .options {
+            margin-bottom: 20px;
+        }
+        label {
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>英语代词复习与练习</h1>
+
+    <h2>代词分类交互表格</h2>
+    <table>
+        <tr>
+            <th>人称代词</th>
+            <th>物主代词</th>
+            <th>反身代词</th>
+            <th>指示代词</th>
+            <th>疑问代词</th>
+        </tr>
+        <tr>
+            <td onclick="toggleText(this, '我', 'I')">我</td>
+            <td onclick="toggleText(this, '我的', 'my')">我的</td>
+            <td onclick="toggleText(this, '我自己', 'myself')">我自己</td>
+            <td onclick="toggleText(this, '这个', 'this')">这个</td>
+            <td onclick="toggleText(this, '谁', 'who')">谁</td>
+        </tr>
+        <tr>
+            <td onclick="toggleText(this, '你', 'you')">你</td>
+            <td onclick="toggleText(this, '你的', 'your')">你的</td>
+            <td onclick="toggleText(this, '你自己', 'yourself')">你自己</td>
+            <td onclick="toggleText(this, '那个', 'that')">那个</td>
+            <td onclick="toggleText(this, '什么', 'what')">什么</td>
+        </tr>
+    </table>
+
+    <h2>代词选择题</h2>
+    <div class="question">
+        <p>1. ________ is the book that I lost yesterday. (这是我昨天丢失的那本书。)</p>
+        <div class="options">
+            <label><input type="radio" name="q1" value="This"> A. This</label>
+            <label><input type="radio" name="q1" value="That"> B. That</label>
+            <label><input type="radio" name="q1" value="It"> C. It</label>
+            <label><input type="radio" name="q1" value="They"> D. They</label>
+        </div>
+    </div>
+    <div class="question">
+        <p>2. We bought ourselves some ice cream. (我们给______买了一些冰淇淋。)</p>
+        <div class="options">
+            <label><input type="radio" name="q2" value="ours"> A. ours</label>
+            <label><input type="radio" name="q2" value="us"> B. us</label>
+            <label><input type="radio" name="q2" value="ourselves"> C. ourselves</label>
+            <label><input type="radio" name="q2" value="we"> D. we</label>
+        </div>
+    </div>
+
+    <script>
+        function toggleText(element, chText, enText) {
+            if (element.textContent === chText) {
+                element.textContent = enText;
+            } else {
+                element.textContent = chText;
+            }
+        }
+    </script>
+</body>
+</html>

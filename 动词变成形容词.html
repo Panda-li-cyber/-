@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>动词变成ing或ed结尾的形容词</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding-top: 60px; }
+        #header { position: fixed; top: 0; width: 100%; text-align: center; background: white; padding: 10px; z-index: 1000; }
+        #leftBox { position: fixed; top: 10px; left: 10px; }
+        #rightBox { position: fixed; top: 10px; right: 10px; display: flex; }
+        #rightBox > div { margin-left: 10px; }
+        table { width: 100%; table-layout: fixed; }
+        td { background-color: darkgreen; color: white; padding: 15px; text-align: center; cursor: pointer; }
+        #footer { position: fixed; bottom: 0; width: 100%; text-align: center; padding: 10px; background: lightgrey; }
+    </style>
+</head>
+<body>
+    <div id="header">动词变成ing或ed结尾的形容词</div>
+    <table id="wordTable">
+        <tr>
+            <th>动词</th>
+            <th>特性形容词</th>
+            <th>感觉形容词</th>
+        </tr>
+    </table>
+    </div>
+    <div id="rightBox">
+        <div>
+            组一积分: <span id="score1">0</span>
+            <button onclick="adjustScore(1, 'score1')">+</button>
+            <button onclick="adjustScore(-1, 'score1')">-</button>
+        </div>
+        <div>
+            组二积分: <span id="score2">0</span>
+            <button onclick="adjustScore(1, 'score2')">+</button>
+            <button onclick="adjustScore(-1, 'score2')">-</button>
+        </div>
+    </div>
+    <table id="wordTable"></table>
+    <div id="footer">
+      熊猫李English工作室李国保
+    </div>
+
+    <script>
+        var words = {
+            'alarm': '使惊恐',
+    'alarming': '令人惊恐的',
+    'alarmed': '感到惊恐的',
+    'amuse': '逗乐',
+    'amusing': '有趣的',
+    'amused': '感到好笑的',
+    'animate': '使活跃',
+    'animating': '激动人心的',
+    'animated': '兴奋的',
+    'annoy': '惹恼',
+    'annoying': '烦人的',
+    'annoyed': '感到烦恼的',
+    'astonish': '使惊讶',
+    'astonishing': '惊人的',
+    'astonished': '感到惊讶的',
+    'bore': '使厌烦',
+    'boring': '无聊的',
+    'bored': '感到无聊的',
+    'calm': '使平静',
+    'calming': '让人平静的',
+    'calmed': '感到平静的',
+    'challenge': '挑战',
+    'challenging': '具有挑战性的',
+    'challenged': '感到受挑战的',
+    'charm': '吸引',
+    'charming': '迷人的',
+    'charmed': '被迷住的',
+    'cheer': '使高兴',
+    'cheering': '令人高兴的',
+    'cheered': '感到高兴的',
+    'comfort': '安慰',
+    'comforting': '安慰的',
+    'comforted': '感到被安慰的',
+    'complicate': '使复杂',
+    'complicating': '复杂的',
+    'complicated': '感到复杂的',
+    'confuse': '使困惑',
+    'confusing': '令人困惑的',
+    'confused': '感到困惑的',
+    'convince': '使信服',
+    'convincing': '有说服力的',
+    'convinced': '信服的',
+    'delight': '使高兴',
+    'delightful': '令人高兴的',
+    'delighted': '非常高兴的',
+    'depress': '使沮丧',
+    'depressing': '令人沮丧的',
+    'depressed': '感到沮丧的',
+    'disappoint': '使失望',
+    'disappointing': '令人失望的',
+    'disappointed': '感到失望的',
+    'discourage': '使气馁',
+    'discouraging': '令人气馁的',
+    'discouraged': '气馁的',
+    'disturb': '扰乱',
+    'disturbing': '令人不安的',
+    'disturbed': '感到不安的',
+    'embarrass': '使尴尬',
+    'embarrassing': '令人尴尬的',
+    'embarrassed': '尴尬的',
+    'encourage': '鼓励',
+    'encouraging': '鼓舞人心的',
+    'encouraged': '感到鼓励的',
+    'engage': '吸引',
+    'engaging': '引人入胜的',
+    'engaged': '感到被吸引的',
+    'entertain': '娱乐',
+    'entertaining': '有娱乐性的',
+    'entertained': '感到娱乐的',
+    'excite': '使兴奋',
+    'exciting': '刺激的',
+    'excited': '感到兴奋的',
+    'exhaust': '使筋疲力尽',
+    'exhausting': '令人筋疲力尽的',
+    'exhausted': '疲惫不堪的',
+    'fascinate': '迷住',
+    'fascinating': '极其有趣的',
+    'fascinated': '被深深吸引的',
+    'frighten': '使害怕',
+    'frightening': '可怕的',
+    'frightened': '害怕的',
+    'frustrate': '挫败',
+    'frustrating': '令人沮丧的',
+    'frustrated': '感到沮丧的',
+    'horrify': '使恐怖',
+    'horrifying': '恐怖的',
+    'horrified': '感到恐惧的',
+    'inspire': '激励',
+    'inspiring': '鼓舞人心的',
+    'inspired': '受到启发的',
+    'interest': '使感兴趣',
+    'interesting': '有趣的',
+    'interested': '感兴趣的',
+    'motivate': '激励',
+    'motivating': '激励人心的',
+    'motivated': '感到有动力的',
+    'move': '感动',
+    'moving': '感人的',
+    'moved': '感到被感动的',
+    'offend': '冒犯',
+    'offending': '冒犯的',
+    'offended': '感到被冒犯的',
+    'overwhelm': '压倒',
+    'overwhelming': '压倒性的',
+    'overwhelmed': '感到不知所措的',
+    'please': '取悦',
+    'pleasing': '令人愉悦的',
+    'pleased': '高兴的',
+    'puzzle': '使困惑',
+    'puzzling': '使人困惑的',
+    'puzzled': '感到困惑的',
+    'refresh': '使恢复',
+    'refreshing': '令人振奋的',
+    'refreshed': '感觉焕然一新的',
+    'relax': '放松',
+    'relaxing': '放松的',
+    'relaxed': '放松的',
+    'satisfy': '满足',
+    'satisfying': '令人满足的',
+    'satisfied': '感到满意的',
+    'scare': '惊吓',
+    'scary': '可怕的',
+    'scared': '害怕的',
+    'shock': '震惊',
+    'shocking': '令人震惊的',
+    'shocked': '感到震惊的',
+    'stimulate': '刺激',
+    'stimulating': '刺激的',
+    'stimulated': '感到兴奋的',
+    'surprise': '使惊讶',
+    'surprising': '令人惊讶的',
+    'surprised': '感到惊讶的',
+    'terrify': '使恐怖',
+    'terrifying': '恐怖的',
+    'terrified': '感到恐性的',
+    'threaten': '威胁',
+    'threatening': '威胁的',
+    'threatened': '感觉受威胁的',
+    'thrill': '激动',
+    'thrilling': '激动人心的',
+    'thrilled': '感到激动的',
+    'tire': '使疲倦',
+    'tiring': '令人疲倦的',
+    'tired': '感到疲倦的',
+    'touch': '感动',
+    'touching': '感人的',
+    'touched': '感到被感动的',
+    'trouble': '使烦恼',
+    'troubling': '令人烦恼的',
+    'troubled': '感到烦恼的',
+    'unsettle': '使不安',
+    'unsettling': '令人不安的',
+    'unsettled': '感到不安的',
+    'upset': '使不安',
+    'upsetting': '令人不安的',
+    'worried': '感到担忧的',
+    'worry': '使担忧',
+    'worrying': '令人担心的'
+            // 更多单词
+        };
+
+        var audioElement = new Audio();
+
+        function createTable() {
+            var table = document.getElementById('wordTable');
+            var row, cell, english, chinese, index = 0;
+            for (english in words) {
+                chinese = words[english];
+                if (index % 3 === 0) {
+                    row = table.insertRow(-1);
+                }
+                cell = row.insertCell(-1);
+                cell.textContent = english;
+                cell.style.backgroundColor = 'darkgreen';
+                cell.style.color = 'white';
+                cell.onclick = (function(e, c) {
+                    return function() {
+                        toggleWord(this, e, c);
+                        playYoudaoAudio(e);
+                    };
+                })(english, chinese);
+                index++;
+            }
+        }
+
+        function toggleWord(cell, english, chinese) {
+            if (cell.textContent === english) {
+                cell.textContent = chinese;
+                cell.style.backgroundColor = 'yellow';
+                cell.style.color = 'black';
+            } else {
+                cell.textContent = english;
+                cell.style.backgroundColor = 'darkgreen';
+                cell.style.color = 'white';
+            }
+        }
+
+        function playYoudaoAudio(text) {
+            var key = encodeURIComponent(text);
+            var engAudioURL = 'https://dict.youdao.com/dictvoice?audio=' + key + '&type=2';
+            audioElement.src = engAudioURL;
+            audioElement.play();
+        }
+        
+        function generateRandom() {
+            var max = document.getElementById('maxStudents').value;
+            var randomNumber = Math.floor(Math.random() * max) + 1;
+            document.getElementById('randomNumber').value = randomNumber;
+        }
+
+        function adjustScore(amount, scoreId) {
+            var score = parseInt(document.getElementById(scoreId).textContent);
+            document.getElementById(scoreId).textContent = score + amount;
+        }
+
+        window.onload = createTable;
+    </script>
+</body>
+</html>
